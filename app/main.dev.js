@@ -10,7 +10,7 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, globalShortcut } from 'electron';
 import MenuBuilder from './menu';
 
 let mainWindow = null;
@@ -83,4 +83,17 @@ app.on('ready', async () => {
 
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
+
+  //Key bindings
+  const ret = globalShortcut.register('mediaplaypause', () => {
+    console.log('mediaplaypause is pressed')
+    mainWindow.webContents.send('mediaplaypause');
+  })
+
+  if (!ret) {
+    console.log('registration failed')
+  }
+
+  // Check whether a shortcut is registered.
+  console.log(globalShortcut.isRegistered('mediaplaypause'))
 });

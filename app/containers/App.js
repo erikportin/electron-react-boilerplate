@@ -1,5 +1,11 @@
 // @flow
 import * as React from 'react';
+import { ipcRenderer } from 'electron';
+
+ipcRenderer.on('mediaplaypause', () => {
+    console.log('mediaplaypause pressed in app');
+});
+
 
 type Props = {
   children: React.Node
