@@ -1,11 +1,6 @@
 // @flow
 import * as React from 'react';
-import { ipcRenderer } from 'electron';
-
-ipcRenderer.on('mediaplaypause', () => {
-    console.log('mediaplaypause pressed in app');
-});
-
+import MediaActions from '../components/MediaActions';
 
 type Props = {
   children: React.Node
@@ -17,6 +12,7 @@ export default class App extends React.Component<Props> {
   render() {
     return (
       <div>
+        <MediaActions />
         {this.props.children}
       </div>
     );
