@@ -1,14 +1,17 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import styles from './Counter.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as PlayPauseActions from '../actions/playPause';
 import { ipcRenderer } from 'electron';
+import * as PlayPauseActions from '../actions/playpause';
 
 type Props = {
-  playPause: () => void
+  activate: () => void,
+  deactivate: () => void
+};
+
+type State = {
+  isActive: false
 };
 
 class MediaActions extends Component<Props> {
@@ -16,23 +19,25 @@ class MediaActions extends Component<Props> {
 
   componentDidMount() {
     const {
-      playPause
+      activate
     } = this.props;
 
     ipcRenderer.on('mediaplaypause', () => {
-        playPause();
+      activate();
     });
   }
 
   render() {
     return (
-      <div></div>
+      <div />
     );
   }
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    isActive: false
+  };
 }
 
 function mapDispatchToProps(dispatch) {

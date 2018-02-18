@@ -1,14 +1,19 @@
 // @flow
-import type { counterStateType } from '../reducers/counter';
+export const PLAY_PAUSE_ACTIVATED = 'PLAY_PAUSE_ACTIVATED';
+export const PLAY_PAUSE_DEACTIVATED = 'PLAY_PAUSE_DEACTIVATED';
 
 type actionType = {
   +type: string
 };
 
-export const PLAY_PAUSE = 'PLAY_PAUSE';
-
-export function playPause() {
+export function activate() {
   return {
-    type: PLAY_PAUSE
+    type: PLAY_PAUSE_ACTIVATED
+  };
+}
+
+export function deactivate() {
+  return {
+    type: PLAY_PAUSE_DEACTIVATED
   };
 }
