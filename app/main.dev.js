@@ -14,6 +14,7 @@ import { app, BrowserWindow, globalShortcut } from 'electron';
 import MenuBuilder from './menu';
 
 let mainWindow = null;
+let willQuitApp = false;
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -77,12 +78,23 @@ app.on('ready', async () => {
     mainWindow.focus();
   });
 
+  mainWindow.on('close', (e) => {
+    if (willQuitApp) {
+      /* the user tried to quit the app */
+      mainWindow = null;
+    } else {
+      /* the user only tried to close the mainWindow */
+      e.preventDefault();
+      mainWindow.hide();
+    }
+  });
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
 
   const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
+  //menuBuilder.buildMenu();
 
   //Key bindings
   const ret = globalShortcut.register('mediaplaypause', () => {
@@ -97,3 +109,6 @@ app.on('ready', async () => {
   // Check whether a shortcut is registered.
   console.log(globalShortcut.isRegistered('mediaplaypause'))
 });
+
+app.on('activate', () => mainWindow.show());
+app.on('before-quit', () => willQuitApp = true);
