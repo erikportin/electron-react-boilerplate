@@ -2,7 +2,7 @@
 import { PLAY_PAUSE_DEACTIVATED, PLAY_PAUSE_ACTIVATED } from '../actions/playpause';
 
 export type playpauseStateType = {
-  +counter: number
+  +playPause: boolean
 };
 
 type actionType = {
@@ -16,6 +16,6 @@ export default function playpause(state: boolean = false, action: actionType) {
     case PLAY_PAUSE_ACTIVATED:
       return true;
     default:
-      return false;
+      return state;
   }
 }
