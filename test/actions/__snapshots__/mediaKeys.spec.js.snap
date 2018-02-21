@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions should activate should create activate action 1`] = `
+Object {
+  "type": "PLAY_PAUSE_ACTIVATED",
+}
+`;
+
+exports[`actions should deactivate should create deactivate action 1`] = `
+Object {
+  "type": "PLAY_PAUSE_DEACTIVATED",
+}
+`;

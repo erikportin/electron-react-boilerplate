@@ -94,20 +94,12 @@ app.on('ready', async () => {
   });
 
   const menuBuilder = new MenuBuilder(mainWindow);
-  //menuBuilder.buildMenu();
+  menuBuilder.buildMenu();
 
-  //Key bindings
-  const ret = globalShortcut.register('mediaplaypause', () => {
-    console.log('mediaplaypause is pressed')
+  // Key bindings
+  globalShortcut.register('mediaplaypause', () => {
     mainWindow.webContents.send('mediaplaypause');
-  })
-
-  if (!ret) {
-    console.log('registration failed')
-  }
-
-  // Check whether a shortcut is registered.
-  console.log(globalShortcut.isRegistered('mediaplaypause'))
+  });
 });
 
 app.on('activate', () => mainWindow.show());
