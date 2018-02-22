@@ -25,10 +25,6 @@ export default class Player extends Component<Props> {
     ipcRenderer.on('mediaplaypause', () => {
       activate();
     });
-
-    this.webview.addEventListener('dom-ready', () => {
-      //this.webview.openDevTools();
-    });
   }
 
   shouldComponentUpdate() {
@@ -43,21 +39,23 @@ export default class Player extends Component<Props> {
   }
 
   injectScript() {
-    this.webview.executeJavaScript(`var iFrame = document.querySelectorAll('.episode-playout iframe')[0].contentDocument;
-var pauseBtn = iFrame.querySelectorAll('.p_pauseButton')[0];
-var playBtn = iFrame.querySelectorAll('.p_playButton')[0];
-var startBtn = iFrame.querySelectorAll('.p_button')[0];
-
-
-if(pauseBtn){
-    pauseBtn.click()
-}
-else if(playBtn){
-    playBtn.click()
-}
-else if(startBtn){
-    startBtn.click()
-}`);
+    if (this.webview.executeJavaScript) {
+      this.webview.executeJavaScript(`var iFrame = document.querySelectorAll('.episode-playout iframe')[0].contentDocument;
+    var pauseBtn = iFrame.querySelectorAll('.p_pauseButton')[0];
+    var playBtn = iFrame.querySelectorAll('.p_playButton')[0];
+    var startBtn = iFrame.querySelectorAll('.p_button')[0];
+    
+    
+    if(pauseBtn){
+        pauseBtn.click()
+    }
+    else if(playBtn){
+        playBtn.click()
+    }
+    else if(startBtn){
+        startBtn.click()
+    }`);
+    }
   }
 
   render() {
