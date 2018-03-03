@@ -3,13 +3,16 @@ import thunk from 'redux-thunk';
 import { createHashHistory } from 'history';
 import { routerMiddleware, routerActions } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
+import { persistentStore } from 'redux-pouchdb';
+import PouchDB from 'pouchdb-browser';
 import rootReducer from '../reducers';
 import * as mediKeyActions from '../actions/mediaKeys';
 import type { playPauseKeyActiveStateType } from '../reducers/mediaKeys';
 
+const db = new PouchDB('play-pause-db');
 const history = createHashHistory();
 
-const configureStore = (initialState?: playPauseKeyActiveStateType) => {
+const configureStore = (initialState: playPauseKeyActiveStateType) => {
   // Redux Configuration
   const middleware = [];
   const enhancers = [];
@@ -49,6 +52,7 @@ const configureStore = (initialState?: playPauseKeyActiveStateType) => {
 
   // Apply Middleware & Compose Enhancers
   enhancers.push(applyMiddleware(...middleware));
+  enhancers.push(persistentStore(db));
   const enhancer = composeEnhancers(...enhancers);
 
   // Create Store

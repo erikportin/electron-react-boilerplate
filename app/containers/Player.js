@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import Player from '../components/Player';
 import * as MediaKeysAction from '../actions/mediaKeys';
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
+  const { id } = props.match.params;
   return {
-    playPauseKeyActive: state.playPauseKeyActive
+    playPauseKeyActive: state.playPauseKeyActive,
+    station: state.stations[id]
   };
 }
 

@@ -2,11 +2,13 @@
 import React, { Component } from 'react';
 import { ipcRenderer } from 'electron';
 import styles from './Player.css';
+import type { stationStateType } from '../reducers/stations';
 
 type Props = {
   activate: () => void,
   deactivate: () => void,
-  playPauseKeyActive: boolean
+  playPauseKeyActive: boolean,
+  station: stationStateType
 };
 
 export default class Player extends Component<Props> {
@@ -39,30 +41,19 @@ export default class Player extends Component<Props> {
   }
 
   injectScript() {
+    const { script } = this.props.station;
+
     if (this.webview.executeJavaScript) {
-      this.webview.executeJavaScript(`var iFrame = document.querySelectorAll('.episode-playout iframe')[0].contentDocument;
-    var pauseBtn = iFrame.querySelectorAll('.p_pauseButton')[0];
-    var playBtn = iFrame.querySelectorAll('.p_playButton')[0];
-    var startBtn = iFrame.querySelectorAll('.p_button')[0];
-    
-    
-    if(pauseBtn){
-        pauseBtn.click()
-    }
-    else if(playBtn){
-        playBtn.click()
-    }
-    else if(startBtn){
-        startBtn.click()
-    }`);
+      this.webview.executeJavaScript(script);
     }
   }
 
   render() {
+    const { url } = this.props.station;
     return (
       <webview
         data-tid="player"
-        src="http://www.bbc.co.uk/programmes/b09s37vt"
+        src={url}
         disablewebsecurity="true"
         className={styles.container}
         ref={(webview) => { this.webview = webview; }}

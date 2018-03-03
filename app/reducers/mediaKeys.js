@@ -1,4 +1,6 @@
 // @flow
+import { persistentReducer } from 'redux-pouchdb';
+
 import { PLAY_PAUSE_DEACTIVATED, PLAY_PAUSE_ACTIVATED } from '../actions/mediaKeys';
 
 export type playPauseKeyActiveStateType = {
@@ -9,7 +11,7 @@ type actionType = {
   +type: string
 };
 
-export default function playPauseKeyActive(state: boolean = false, action: actionType) {
+function playPauseKeyActive(state: boolean = false, action: actionType) {
   switch (action.type) {
     case PLAY_PAUSE_DEACTIVATED:
       return false;
@@ -19,3 +21,5 @@ export default function playPauseKeyActive(state: boolean = false, action: actio
       return state;
   }
 }
+
+export default persistentReducer(playPauseKeyActive);
