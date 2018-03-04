@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { ipcRenderer } from 'electron';
+import { Link } from 'react-router-dom';
 import styles from './Player.css';
 import type { stationStateType } from '../reducers/stations';
 
@@ -49,15 +50,21 @@ export default class Player extends Component<Props> {
   }
 
   render() {
-    const { url } = this.props.station;
+    const { url, name } = this.props.station;
+
     return (
-      <webview
-        data-tid="player"
-        src={url}
-        disablewebsecurity="true"
-        className={styles.container}
-        ref={(webview) => { this.webview = webview; }}
-      />
+      <div>
+        <h1>{name}</h1>
+        <Link to="/">Back</Link>
+
+        <webview
+          data-tid="player"
+          src={url}
+          disablewebsecurity="true"
+          className={styles.container}
+          ref={(webview) => { this.webview = webview; }}
+        />
+      </div>
     );
   }
 }

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Player component should match exact snapshot 1`] = `
+<div>
+  <webview
+    className="container"
+    data-tid="player"
+    disablewebsecurity="true"
+    src="http://www.bbc.co.uk/programmes/b09s37vt"
+  />
+</div>
+`;
