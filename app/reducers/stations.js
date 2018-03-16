@@ -34,6 +34,11 @@ export const initialState = [
     else if(startBtn){
         startBtn.click()
     }`
+  },
+  {
+    url: 'http://sr.se',
+    name: 'SR.se',
+    script: 'document.getElementsByClassName("player-play")[0].click()'
   }
 ];
 

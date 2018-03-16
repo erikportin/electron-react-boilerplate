@@ -54,8 +54,10 @@ export default class Player extends Component<Props> {
 
     return (
       <div>
-        <h1>{name}</h1>
-        <Link to="/">Back</Link>
+        <div className={styles.header}>
+          <Link to="/" className={styles.btn}>Back</Link>
+          <h1 className={styles.title}>{name}</h1>
+        </div>
 
         <webview
           data-tid="player"

@@ -5,9 +5,16 @@
 @import "~font-awesome/css/font-awesome.css";
 
 body {
+  font-family: 'Roboto', sans-serif;
   height: 100vh;
-  background-color: #ff72d4;
-  color: #FFF;
+  background-color: #A8A39D;
+  color: #fff;
   overflow-y: hidden;
   margin: 0;
+  font-weight: 300;
+}
+
+a{
+  color: #fff;
+  text-decoration: none;
 }

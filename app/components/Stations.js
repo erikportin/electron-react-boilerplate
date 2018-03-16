@@ -16,14 +16,12 @@ export default class Player extends Component<Props> {
   render() {
     const { stations } = this.props;
     return (
-      <ul>
-        {stations.map((station, i) => {
-          return (
-            <li key={station.url}>
-              <Link to={`/station/${i}`}>{station.name}</Link>
-            </li>
-          );
-        })}
+      <ul className={styles.list}>
+        {stations.map((station, i) => (
+          <li key={station.url} className={styles.listItem}>
+            <Link to={`/station/${i}`}>{station.name}</Link>
+          </li>
+          ))}
       </ul>
     );
   }

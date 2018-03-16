@@ -1,3 +1,20 @@
 .container {
   height: 100vh;
 }
+
+.title {
+  float: right;
+  margin: 0;
+
+}
+
+.btn{
+  float: left;
+  padding: 0.5rem;
+  display: block;
+}
+
+.header{
+  padding: 1rem;
+  overflow: hidden;
+}
