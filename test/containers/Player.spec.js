@@ -33,7 +33,7 @@ function setup(initialState) {
   const app = mount(provider);
   return {
     app,
-    webview: app.find('[data-tid="player"]'),
+    webview: app.find('[data-tid="webview"]'),
   };
 }
 

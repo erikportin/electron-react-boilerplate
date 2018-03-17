@@ -21,5 +21,10 @@ Array [
     }",
     "url": "http://www.bbc.co.uk/programmes/b09s37vt",
   },
+  Object {
+    "name": "SR.se",
+    "script": "document.getElementsByClassName(\\"player-play\\")[0].click()",
+    "url": "http://sr.se",
+  },
 ]
 `;

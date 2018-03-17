@@ -21,7 +21,7 @@ function setup() {
   return {
     component,
     actions,
-    webview: component.find('[data-tid="player"]')
+    webview: component.find('[data-tid="webview"]')
   };
 }
 
@@ -31,23 +31,17 @@ describe('Player component', () => {
     expect(webview.prop('src')).toEqual('http://www.bbc.co.uk/programmes/b09s37vt');
   });
 
-  it('should first button should call increment', () => {
+  it('should handle play pause action', () => {
     const { actions, component } = setup();
     component.setProps({ playPauseKeyActive: true });
     expect(actions.deactivate.called).toBe(true);
   });
 
   it('should match exact snapshot', () => {
-    const { actions } = setup();
-    const counter = (
-      <div>
-        <Router>
-          <Player playPauseKeyActive={false} station={stations[0]} {...actions} />
-        </Router>
-      </div>
-    );
+    const { component } = setup();
+
     const tree = renderer
-      .create(counter)
+      .create(component)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

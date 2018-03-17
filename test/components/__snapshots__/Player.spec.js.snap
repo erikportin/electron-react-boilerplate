@@ -1,10 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Player component should match exact snapshot 1`] = `
-<div>
+<div
+  data-tid="player"
+>
+  <div
+    className="header"
+  >
+    <div>
+      <i
+        className="fa fa-chevron-circle-left"
+      />
+    </div>
+    <h1
+      className="title"
+    >
+      BBC 6
+    </h1>
+  </div>
   <webview
     className="container"
-    data-tid="player"
+    data-tid="webview"
     disablewebsecurity="true"
     src="http://www.bbc.co.uk/programmes/b09s37vt"
   />

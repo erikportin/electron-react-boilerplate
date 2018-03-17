@@ -53,14 +53,16 @@ export default class Player extends Component<Props> {
     const { url, name } = this.props.station;
 
     return (
-      <div>
+      <div data-tid="player">
         <div className={styles.header}>
-          <Link to="/" className={styles.btn}>Back</Link>
+          <Link to="/" className={styles.btn}>
+            <i className="fa fa-chevron-circle-left" />
+          </Link>
           <h1 className={styles.title}>{name}</h1>
         </div>
 
         <webview
-          data-tid="player"
+          data-tid="webview"
           src={url}
           disablewebsecurity="true"
           className={styles.container}

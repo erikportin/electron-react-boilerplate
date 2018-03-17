@@ -47,6 +47,6 @@ describe('main window', function spec() {
     const { client } = this.app;
     await client.waitUntilWindowLoaded();
     await delay(500);
-    expect(await client.isExisting('[data-tid="player"]')).toBe(true);
+    expect(await client.isExisting('[data-tid="webview"]')).toBe(true);
   });
 });
